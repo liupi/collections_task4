@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,9 +23,7 @@ public class Main {
 
     private static List<String> readFile() {
         try (BufferedReader br = new BufferedReader(new FileReader("resources/employees.txt"))) {
-            List<String> list = new ArrayList<>(br.lines().toList());
-            list.sort(Comparator.reverseOrder());
-            return list;
+            return br.lines().sorted(Comparator.reverseOrder()).toList();
         } catch (IOException e) {
             throw new RuntimeException("Error reading file.");
         }
